@@ -67,9 +67,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """Извлекает информацию из конкретной домашней работы и
-    формирует сообщение.
-    """
+    """Извлекает информацию из конкретной домашней работы."""
     homework_name = homework.get('homework_name')
     homework_status = homework.get('status')
     if homework_name is None:
