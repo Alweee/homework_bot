@@ -29,16 +29,13 @@ def send_message(bot, message):
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logging.info('Удачная отправка сообщения в Telegram!')
-        return True
     except telegram.TelegramError as error:
         logging.error(f'Сбой при отправке сообщения в Telegram: {error}')
-        return False
 
 
 def get_api_answer(current_timestamp):
     """Делает запрос к единственному эндпоинту API-сервиса."""
     timestamp = current_timestamp or int(time.time())
-    # timestamp = 1651637862 - 1829743
     params = {'from_date': timestamp}
     try:
         response = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -88,10 +85,7 @@ def parse_status(homework):
 
 def check_tokens():
     """Проверяет доступность переменных окружения."""
-    tokens = [PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID]
-    if all(tokens):
-        return True
-    return False
+    return all([PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID])
 
 
 def main():
@@ -103,7 +97,6 @@ def main():
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
     current_timestamp = int(time.time())
     error_message = ''
-    # current_timestamp = 1651637862 - 1829743
 
     while True:
         try:
