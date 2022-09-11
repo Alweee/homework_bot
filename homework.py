@@ -95,7 +95,7 @@ def main():
                          'программа принудительно остановлена.')
         raise TokenError('Функция check_tokens возвращает False')
     bot = telegram.Bot(token=TELEGRAM_TOKEN)
-    current_timestamp = int(time.time())
+    current_timestamp = 1549962000
     error_message = ''
 
     while True:
